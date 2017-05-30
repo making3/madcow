@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Madcow</string>
-    <string name="lift_height">150</string>
+    <string name="lift_height">150dp</string>
+    <string name="next_day">Next Day</string>
 </resources>

@@ -8,83 +8,49 @@
 
     <LinearLayout
         android:layout_width="368dp"
-        android:layout_height="@string/lift_height"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        app:layout_editor_absoluteY="8dp"
+        app:layout_editor_absoluteX="8dp">
+        <com.example.mattk.madcow.WorkoutRow
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="35dp"
+            android:id="@+id/firstWorkout"
+            app:liftName="Squat"
+            />
+        <com.example.mattk.madcow.WorkoutRow
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="35dp"
+            android:id="@+id/secondWorkout"
+            app:liftName="Bench" />
+
+        <com.example.mattk.madcow.WorkoutRow
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="35dp"
+            android:id="@+id/thirdWorkout"
+            app:liftName="Rows"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:gravity="bottom"
+        app:layout_editor_absoluteY="0dp"
+        app:layout_editor_absoluteX="8dp">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/next_day"
+        android:gravity="center"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/first_lift"
-            android:text="Squat"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="@string/lift_height"
-        tools:layout_editor_absoluteY="150"
-        tools:layout_editor_absoluteX="8dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/second_lift"
-            android:text="Bench"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="@string/lift_height"
-        tools:layout_editor_absoluteY="300dp"
-        tools:layout_editor_absoluteX="8dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/third_lift"
-            android:text="Row"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="75"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="90"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </LinearLayout>
-        </LinearLayout>
+        tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
+
