@@ -53,8 +53,14 @@ public class WorkoutRow extends LinearLayout {
             SetLiftName(liftName);
         }
 
-        LinearLayout layoutLifts = new LinearLayout(context);
+    }
 
+    public void SetLiftName(String liftName) {
+        _liftName.setText(liftName);
+    }
+
+    public void SetLifts(Context context, String[] liftNumbers) {
+        LinearLayout layoutLifts = new LinearLayout(context);
         layoutLifts.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         layoutLifts.addView(new IndividualLift(context, 75));
@@ -65,9 +71,5 @@ public class WorkoutRow extends LinearLayout {
 
         LinearLayout layout = (LinearLayout)findViewById(R.id.lift_row);
         layout.addView(layoutLifts);
-    }
-
-    public void SetLiftName(String liftName) {
-        _liftName.setText(liftName);
     }
 }
