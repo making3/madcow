@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
 import com.example.mattk.madcow.helpers.LiftCalculator;
@@ -34,6 +35,10 @@ public class WorkoutActivity extends AppCompatActivity {
         } else {
             setFridayWorkouts(context, week, calc);
         }
+        TextView dayText = (TextView)findViewById(R.id.day);
+        TextView weekText = (TextView)findViewById(R.id.week);
+        weekText.setText("Week: " + week);
+        dayText.setText("Day: " + day);
     }
 
     public void nextDayOnClick(View v) {
