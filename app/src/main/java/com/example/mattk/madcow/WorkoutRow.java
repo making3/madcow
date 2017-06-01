@@ -2,14 +2,14 @@ package com.example.mattk.madcow;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.mattk.madcow.data.Lift;
 
 public class WorkoutRow extends LinearLayout {
     TextView _liftName;
@@ -52,22 +52,39 @@ public class WorkoutRow extends LinearLayout {
 
             SetLiftName(liftName);
         }
-
     }
 
     public void SetLiftName(String liftName) {
         _liftName.setText(liftName);
     }
 
-    public void SetLifts(Context context, String[] liftNumbers) {
+    public void SetLiftName(Lift lift) {
+        switch (lift) {
+            case BENCH:
+                SetLiftName("Bench");
+                break;
+            case ROW:
+                SetLiftName("Row");
+                break;
+            case PRESS:
+                SetLiftName("Press");
+                break;
+            case DEADLIFT:
+                SetLiftName("Deadlift");
+                break;
+            default:
+                SetLiftName("Squat");
+                break;
+        }
+    }
+
+    public void SetLifts(Context context, int[] liftNumbers) {
         LinearLayout layoutLifts = new LinearLayout(context);
         layoutLifts.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        layoutLifts.addView(new IndividualLift(context, 75));
-        layoutLifts.addView(new IndividualLift(context, 90));
-        layoutLifts.addView(new IndividualLift(context, 110));
-        layoutLifts.addView(new IndividualLift(context, 125));
-        layoutLifts.addView(new IndividualLift(context, 145));
+        for (int i = 0; i < liftNumbers.length; i++) {
+            layoutLifts.addView(new IndividualLift(context, liftNumbers[i]));
+        }
 
         LinearLayout layout = (LinearLayout)findViewById(R.id.lift_row);
         layout.addView(layoutLifts);

@@ -44,11 +44,23 @@
         android:gravity="bottom"
         app:layout_editor_absoluteY="0dp"
         app:layout_editor_absoluteX="8dp">
+
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/prev_day"
+        android:gravity="center"
+        android:id="@+id/prev_day"
+        android:onClick="prevDayOnClick"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="@string/next_day"
+        android:id="@+id/next_day"
         android:gravity="center"
+        android:onClick="nextDayOnClick"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="0dp" />
     </LinearLayout>

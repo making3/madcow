@@ -192,8 +192,6 @@ public class LiftCalculatorUnitTest {
         assertEquals(actual, 165);
     }
 
-
-
     @Test
     public void testNinthWeekSecondDaySquat() {
         int actual = calculator.getMaxWeight(9, 2, Lift.SQUAT, 2.5);
