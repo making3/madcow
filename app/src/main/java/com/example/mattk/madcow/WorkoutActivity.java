@@ -1,9 +1,13 @@
 package com.example.mattk.madcow;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,10 +16,30 @@ import com.example.mattk.madcow.helpers.LiftCalculator;
 
 import java.util.prefs.Preferences;
 
-public class WorkoutActivity extends AppCompatActivity {
+public class WorkoutActivity extends Activity {
     private final double tempPlate = 2.5;
     private static final String WEEK = "week";
     private static final String DAY = "day";
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       switch (item.getItemId()) {
+         case R.id.search:
+             Intent settingsIntent = new Intent(WorkoutActivity.this, SettingsActivity.class);
+             WorkoutActivity.this.startActivity(settingsIntent);
+          //your code here
+            return true;
+         default:
+            return super.onOptionsItemSelected(item);
+       }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
