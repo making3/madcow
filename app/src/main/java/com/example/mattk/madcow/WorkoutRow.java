@@ -59,6 +59,7 @@ public class WorkoutRow extends LinearLayout {
     }
 
     public void SetLiftName(Lift lift) {
+        // TODO: Find cleaner way
         switch (lift) {
             case BENCH:
                 SetLiftName("Bench");

@@ -1,14 +1,12 @@
 package com.example.mattk.madcow.helpers;
 
-import android.content.SharedPreferences;
-
 import com.example.mattk.madcow.data.Lift;
 
 public class LiftCalculator {
-    private SharedPreferences _preferences;
+    private Settings _settings;
 
-    public LiftCalculator(SharedPreferences preferences) {
-        _preferences = preferences;
+    public LiftCalculator(Settings settings) {
+        _settings = settings;
     }
 
     public int getMaxWeight(int week, int day, Lift lift, double plate) {
@@ -24,19 +22,19 @@ public class LiftCalculator {
         double startingLift = 0;
         switch (lift) {
             case BENCH:
-                startingLift = getStartingBench();
+                startingLift = _settings.getStartingBench();
                 break;
             case SQUAT:
-                startingLift = getStartingSquat();
+                startingLift = _settings.getStartingSquat();
                 break;
             case ROW:
-                startingLift = getStartingRow();
+                startingLift = _settings.getStartingRow();
                 break;
             case PRESS:
-                startingLift = getStartingPress();
+                startingLift = _settings.getStartingPress();
                 break;
             case DEADLIFT:
-                startingLift = getStartingDeadlift();
+                startingLift = _settings.getStartingDeadlift();
                 break;
         }
 
@@ -54,31 +52,7 @@ public class LiftCalculator {
 
     public int getWarmupWeight(int maxWeight, int warmupOffset, double plate) {
         // =         ROUND(        E14*(1-SQINT)/(2*PLATE),0)*2*PLATE
-        int a = Math.round(maxWeight * (1- getSetInterval() * warmupOffset) / (float)(2.0 * plate));
+        int a = Math.round(maxWeight * (1- _settings.getSetInterval() * warmupOffset) / (float)(2.0 * plate));
         return (int)(a * 2.0 * plate);
-    }
-
-    private float getSetInterval() {
-        return _preferences.getFloat("set_interval", 0.125f);
-    }
-
-    private int getStartingSquat() {
-        return _preferences.getInt("squat", 230);
-    }
-
-    private int getStartingBench() {
-        return _preferences.getInt("bench", 140);
-    }
-
-    private int getStartingRow() {
-        return _preferences.getInt("row", 145);
-    }
-
-    private int getStartingPress() {
-        return _preferences.getInt("press", 95);
-    }
-
-    private int getStartingDeadlift() {
-        return _preferences.getInt("deadlift", 250);
     }
 }

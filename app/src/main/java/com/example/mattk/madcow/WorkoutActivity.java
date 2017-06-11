@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
 import com.example.mattk.madcow.helpers.LiftCalculator;
+import com.example.mattk.madcow.helpers.Settings;
 
 import java.util.prefs.Preferences;
 
@@ -34,7 +35,6 @@ public class WorkoutActivity extends Activity {
          case R.id.search:
              Intent settingsIntent = new Intent(WorkoutActivity.this, SettingsActivity.class);
              WorkoutActivity.this.startActivity(settingsIntent);
-          //your code here
             return true;
          default:
             return super.onOptionsItemSelected(item);
@@ -50,7 +50,7 @@ public class WorkoutActivity extends Activity {
         int week = getWeek();
         int day = getDay();
 
-        LiftCalculator calc = new LiftCalculator(getPreferences(0));
+        LiftCalculator calc = new LiftCalculator(new Settings(this));
 
         if (day == 1) {
             setMondayWorkouts(context, week, calc);
