@@ -88,6 +88,7 @@ public class WorkoutRow extends LinearLayout {
         }
 
         LinearLayout layout = (LinearLayout)findViewById(R.id.lift_row);
+        layout.removeAllViews();
         layout.addView(layoutLifts);
     }
 }

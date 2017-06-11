@@ -21,6 +21,12 @@ public class WorkoutActivity extends Activity {
     private Settings _settings;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        reload();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -33,9 +39,6 @@ public class WorkoutActivity extends Activity {
             case R.id.settings:
                 Intent settingsIntent = new Intent(WorkoutActivity.this, SettingsActivity.class);
                 WorkoutActivity.this.startActivity(settingsIntent);
-                return true;
-            case R.id.reload: // Temporary reload until it's not required.
-                reload();
                 return true;
             case R.id.reset:
                 _settings.setWeek(1);
@@ -99,8 +102,18 @@ public class WorkoutActivity extends Activity {
     }
 
     public void reload() {
-        finish();
-        startActivity(getIntent());
+        int week = _settings.getWeek();
+        int day = _settings.getDay();
+
+        LiftCalculator calc = new LiftCalculator(_settings);
+
+        if (day == WORKOUT_MONDAY) {
+            setMondayWorkouts(week, calc);
+        } else if (day == WORKOUT_WEDNESDAY) {
+            setWednesdayWorkouts(week, calc);
+        } else {
+            setFridayWorkouts(week, calc);
+        }
     }
 
     private void setMondayWorkouts(int week, LiftCalculator calc) {
