@@ -1,7 +1,6 @@
 package com.example.mattk.madcow;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +13,11 @@ import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
 public class WorkoutActivity extends Activity {
+    final int WORKOUT_MONDAY = 1;
+    final int WORKOUT_WEDNESDAY = 2;
+    final int FIRST_WORKOUT = 1;
+    final int SECOND_WORKOUT = 2;
+    final int THIRD_WORKOUT = 3;
     private Settings _settings;
 
     @Override
@@ -47,7 +51,6 @@ public class WorkoutActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        Context context = getApplicationContext();
 
         _settings = new Settings(this);
 
@@ -56,12 +59,12 @@ public class WorkoutActivity extends Activity {
 
         LiftCalculator calc = new LiftCalculator(_settings);
 
-        if (day == 1) {
-            setMondayWorkouts(context, week, calc);
-        } else if (day == 2) {
-            setWednesdayWorkouts(context, week, calc);
+        if (day == WORKOUT_MONDAY) {
+            setMondayWorkouts(week, calc);
+        } else if (day == WORKOUT_WEDNESDAY) {
+            setWednesdayWorkouts(week, calc);
         } else {
-            setFridayWorkouts(context, week, calc);
+            setFridayWorkouts(week, calc);
         }
         TextView dayText = (TextView)findViewById(R.id.day);
         TextView weekText = (TextView)findViewById(R.id.week);
@@ -100,13 +103,13 @@ public class WorkoutActivity extends Activity {
         startActivity(getIntent());
     }
 
-    private void setMondayWorkouts(Context context, int week, LiftCalculator calc) {
-        addMondayLift(1, context, week, Lift.SQUAT, calc);
-        addMondayLift(2, context, week, Lift.BENCH, calc);
-        addMondayLift(3, context, week, Lift.ROW, calc);
+    private void setMondayWorkouts(int week, LiftCalculator calc) {
+        addMondayLift(FIRST_WORKOUT, week, Lift.SQUAT, calc);
+        addMondayLift(SECOND_WORKOUT, week, Lift.BENCH, calc);
+        addMondayLift(THIRD_WORKOUT, week, Lift.ROW, calc);
     }
 
-    private void addMondayLift(int workoutNumber, Context context, int week, Lift lift, LiftCalculator calc) {
+    private void addMondayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 1, lift);
 
         int[] lifts = new int[5];
@@ -118,16 +121,16 @@ public class WorkoutActivity extends Activity {
 
         WorkoutRow row = getWorkout(workoutNumber);
         row.SetLiftName(lift);
-        row.SetLifts(context, lifts);
+        row.SetLifts(this, lifts);
     }
 
-    private void setWednesdayWorkouts(Context context, int week, LiftCalculator calc) {
-        addWednesdaySquat(context, week, calc);
-        addWednesdayLift(2, context, week, Lift.PRESS, calc);
-        addWednesdayLift(3, context, week, Lift.DEADLIFT, calc);
+    private void setWednesdayWorkouts(int week, LiftCalculator calc) {
+        addWednesdaySquat(week, calc);
+        addWednesdayLift(SECOND_WORKOUT, week, Lift.PRESS, calc);
+        addWednesdayLift(THIRD_WORKOUT, week, Lift.DEADLIFT, calc);
     }
 
-    private void addWednesdayLift(int workoutNumber, Context context, int week, Lift lift, LiftCalculator calc) {
+    private void addWednesdayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 2, lift);
         int[] lifts = new int[4];
         lifts[0] = calc.getWarmupWeight(maxLift, 3);
@@ -137,10 +140,10 @@ public class WorkoutActivity extends Activity {
 
         WorkoutRow row = getWorkout(workoutNumber);
         row.SetLiftName(lift);
-        row.SetLifts(context, lifts);
+        row.SetLifts(this, lifts);
     }
 
-    private void addWednesdaySquat(Context context, int week, LiftCalculator calc) {
+    private void addWednesdaySquat(int week, LiftCalculator calc) {
         int maxSquat = calc.getMaxWeight(week, 2, Lift.SQUAT);
 
         int[] lifts = new int[4];
@@ -149,16 +152,16 @@ public class WorkoutActivity extends Activity {
         lifts[2] = maxSquat;
         lifts[3] = maxSquat;
 
-        getWorkout(1).SetLifts(context, lifts);
+        getWorkout(1).SetLifts(this, lifts);
     }
 
-    private void setFridayWorkouts(Context context, int week, LiftCalculator calc) {
-        addFridayLift(1, context, week, Lift.SQUAT, calc);
-        addFridayLift(2, context, week, Lift.BENCH, calc);
-        addFridayLift(3, context, week, Lift.ROW, calc);
+    private void setFridayWorkouts(int week, LiftCalculator calc) {
+        addFridayLift(FIRST_WORKOUT, week, Lift.SQUAT, calc);
+        addFridayLift(SECOND_WORKOUT, week, Lift.BENCH, calc);
+        addFridayLift(THIRD_WORKOUT, week, Lift.ROW, calc);
     }
 
-    private void addFridayLift(int workoutNumber, Context context, int week, Lift lift, LiftCalculator calc) {
+    private void addFridayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 3, lift);
         int[] lifts = new int[6];
         lifts[0] = calc.getWarmupWeight(maxLift, 4);
@@ -170,14 +173,14 @@ public class WorkoutActivity extends Activity {
 
         WorkoutRow row = getWorkout(workoutNumber);
         row.SetLiftName(lift);
-        row.SetLifts(context, lifts);
+        row.SetLifts(this, lifts);
     }
 
     private WorkoutRow getWorkout(int workoutNumber) {
-        if (workoutNumber == 1) {
+        if (workoutNumber == FIRST_WORKOUT) {
             return (WorkoutRow) findViewById(R.id.firstWorkout);
         }
-        if (workoutNumber == 2) {
+        if (workoutNumber == SECOND_WORKOUT) {
             return (WorkoutRow) findViewById(R.id.secondWorkout);
         }
         return (WorkoutRow) findViewById(R.id.thirdWorkout);
