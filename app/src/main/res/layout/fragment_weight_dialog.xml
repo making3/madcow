@@ -9,16 +9,15 @@
         android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"
         android:textSize="20dp"
-        android:text="Enter Starting Weight: "/>
+        android:text="Edit Setting: "/>
     <EditText
         android:id="@+id/weight"
-        android:maxLength="3"
-        android:inputType="number"
+        android:maxLength="4"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Starting Weight" />
+        android:layout_marginBottom="4dp" />
 </LinearLayout>

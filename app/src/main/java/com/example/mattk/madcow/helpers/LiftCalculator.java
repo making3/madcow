@@ -9,14 +9,15 @@ public class LiftCalculator {
         _settings = settings;
     }
 
-    public int getMaxWeight(int week, int day, Lift lift, double plate) {
+    public int getMaxWeight(int week, int day, Lift lift) {
         if (day != 2 && (lift == Lift.DEADLIFT || lift == Lift.PRESS)) {
             throw new IllegalArgumentException("deadlift and press must be on day 2.");
         }
 
+        float plate = _settings.getSmallestPlate();
         if (day == 2 && lift == Lift.SQUAT) {
-            int maxWeight = getMaxWeight(week, 1, lift, plate);
-            return getWarmupWeight(maxWeight, 2, plate);
+            int maxWeight = getMaxWeight(week, 1, lift);
+            return getWarmupWeight(maxWeight, 2);
         }
 
         double startingLift = 0;
@@ -50,7 +51,9 @@ public class LiftCalculator {
         }
     }
 
-    public int getWarmupWeight(int maxWeight, int warmupOffset, double plate) {
+    public int getWarmupWeight(int maxWeight, int warmupOffset) {
+        float plate = _settings.getSmallestPlate();
+
         // =         ROUND(        E14*(1-SQINT)/(2*PLATE),0)*2*PLATE
         int a = Math.round(maxWeight * (1- _settings.getSetInterval() * warmupOffset) / (float)(2.0 * plate));
         return (int)(a * 2.0 * plate);

@@ -3,8 +3,6 @@ package com.example.mattk.madcow;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +13,8 @@ import com.example.mattk.madcow.data.Lift;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
-import java.util.prefs.Preferences;
-
 public class WorkoutActivity extends Activity {
-    private final double tempPlate = 2.5;
-    private static final String WEEK = "week";
-    private static final String DAY = "day";
+    private Settings _settings;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,14 +25,22 @@ public class WorkoutActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       switch (item.getItemId()) {
-         case R.id.search:
-             Intent settingsIntent = new Intent(WorkoutActivity.this, SettingsActivity.class);
-             WorkoutActivity.this.startActivity(settingsIntent);
-            return true;
-         default:
-            return super.onOptionsItemSelected(item);
-       }
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent settingsIntent = new Intent(WorkoutActivity.this, SettingsActivity.class);
+                WorkoutActivity.this.startActivity(settingsIntent);
+                return true;
+            case R.id.reload: // Temporary reload until it's not required.
+                reload();
+                return true;
+            case R.id.reset:
+                _settings.setWeek(1);
+                _settings.setDay(1);
+                reload();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -47,10 +49,12 @@ public class WorkoutActivity extends Activity {
         setContentView(R.layout.activity_workout);
         Context context = getApplicationContext();
 
-        int week = getWeek();
-        int day = getDay();
+        _settings = new Settings(this);
 
-        LiftCalculator calc = new LiftCalculator(new Settings(this));
+        int week = _settings.getWeek();
+        int day = _settings.getDay();
+
+        LiftCalculator calc = new LiftCalculator(_settings);
 
         if (day == 1) {
             setMondayWorkouts(context, week, calc);
@@ -66,27 +70,27 @@ public class WorkoutActivity extends Activity {
     }
 
     public void nextDayOnClick(View v) {
-        int day = getDay();
+        int day = _settings.getDay();
         if (day == 3) {
-            int week = getWeek();
-            setDay(1);
-            setWeek(week + 1);
+            int week = _settings.getWeek();
+            _settings.setDay(1);
+            _settings.setWeek(week + 1);
         } else {
-            setDay(day + 1);
+            _settings.setDay(day + 1);
         }
         reload();
     }
 
     public void prevDayOnClick(View v) {
-        int day = getDay();
+        int day = _settings.getDay();
         if (day == 1) {
-            int week = getWeek();
+            int week = _settings.getWeek();
             if (week != 1) { // temporarily prevent from going to week 0 day 3 (does not exist)
-                setWeek(week - 1);
-                setDay(3);
+                _settings.setWeek(week - 1);
+                _settings.setDay(3);
             }
         } else {
-            setDay(day - 1);
+            _settings.setDay(day - 1);
         }
         reload();
     }
@@ -103,13 +107,13 @@ public class WorkoutActivity extends Activity {
     }
 
     private void addMondayLift(int workoutNumber, Context context, int week, Lift lift, LiftCalculator calc) {
-        int maxLift = calc.getMaxWeight(week, 1, lift, tempPlate);
+        int maxLift = calc.getMaxWeight(week, 1, lift);
 
         int[] lifts = new int[5];
-        lifts[0] = calc.getWarmupWeight(maxLift, 4, tempPlate);
-        lifts[1] = calc.getWarmupWeight(maxLift, 3, tempPlate);
-        lifts[2] = calc.getWarmupWeight(maxLift, 2, tempPlate);
-        lifts[3] = calc.getWarmupWeight(maxLift, 1, tempPlate);
+        lifts[0] = calc.getWarmupWeight(maxLift, 4);
+        lifts[1] = calc.getWarmupWeight(maxLift, 3);
+        lifts[2] = calc.getWarmupWeight(maxLift, 2);
+        lifts[3] = calc.getWarmupWeight(maxLift, 1);
         lifts[4] = maxLift;
 
         WorkoutRow row = getWorkout(workoutNumber);
@@ -124,11 +128,11 @@ public class WorkoutActivity extends Activity {
     }
 
     private void addWednesdayLift(int workoutNumber, Context context, int week, Lift lift, LiftCalculator calc) {
-        int maxLift = calc.getMaxWeight(week, 2, lift, tempPlate);
+        int maxLift = calc.getMaxWeight(week, 2, lift);
         int[] lifts = new int[4];
-        lifts[0] = calc.getWarmupWeight(maxLift, 3, tempPlate);
-        lifts[1] = calc.getWarmupWeight(maxLift, 2, tempPlate);
-        lifts[2] = calc.getWarmupWeight(maxLift, 1, tempPlate);
+        lifts[0] = calc.getWarmupWeight(maxLift, 3);
+        lifts[1] = calc.getWarmupWeight(maxLift, 2);
+        lifts[2] = calc.getWarmupWeight(maxLift, 1);
         lifts[3] = maxLift;
 
         WorkoutRow row = getWorkout(workoutNumber);
@@ -137,11 +141,11 @@ public class WorkoutActivity extends Activity {
     }
 
     private void addWednesdaySquat(Context context, int week, LiftCalculator calc) {
-        int maxSquat = calc.getMaxWeight(week, 2, Lift.SQUAT, tempPlate);
+        int maxSquat = calc.getMaxWeight(week, 2, Lift.SQUAT);
 
         int[] lifts = new int[4];
-        lifts[0] = calc.getWarmupWeight(maxSquat, 4, tempPlate);
-        lifts[1] = calc.getWarmupWeight(maxSquat, 3, tempPlate);
+        lifts[0] = calc.getWarmupWeight(maxSquat, 4);
+        lifts[1] = calc.getWarmupWeight(maxSquat, 3);
         lifts[2] = maxSquat;
         lifts[3] = maxSquat;
 
@@ -155,12 +159,12 @@ public class WorkoutActivity extends Activity {
     }
 
     private void addFridayLift(int workoutNumber, Context context, int week, Lift lift, LiftCalculator calc) {
-        int maxLift = calc.getMaxWeight(week, 3, lift, tempPlate);
+        int maxLift = calc.getMaxWeight(week, 3, lift);
         int[] lifts = new int[6];
-        lifts[0] = calc.getWarmupWeight(maxLift, 4, tempPlate);
-        lifts[1] = calc.getWarmupWeight(maxLift, 3, tempPlate);
-        lifts[2] = calc.getWarmupWeight(maxLift, 2, tempPlate);
-        lifts[3] = calc.getWarmupWeight(maxLift, 1, tempPlate);
+        lifts[0] = calc.getWarmupWeight(maxLift, 4);
+        lifts[1] = calc.getWarmupWeight(maxLift, 3);
+        lifts[2] = calc.getWarmupWeight(maxLift, 2);
+        lifts[3] = calc.getWarmupWeight(maxLift, 1);
         lifts[4] = maxLift;
         lifts[5] = lifts[2];
 
@@ -177,29 +181,5 @@ public class WorkoutActivity extends Activity {
             return (WorkoutRow) findViewById(R.id.secondWorkout);
         }
         return (WorkoutRow) findViewById(R.id.thirdWorkout);
-    }
-
-    private void setWeek(int week){
-        SharedPreferences prefs = getPreferences(0);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(WEEK, week);
-        editor.commit();
-    }
-
-    private int getWeek() {
-        SharedPreferences prefs = getPreferences(0);
-        return prefs.getInt(WEEK, 1);
-    }
-
-    private void setDay(int day){
-        SharedPreferences prefs = getPreferences(0);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(DAY, day);
-        editor.commit();
-    }
-
-    private int getDay() {
-        SharedPreferences prefs = getPreferences(0);
-        return prefs.getInt(DAY, 1);
     }
 }

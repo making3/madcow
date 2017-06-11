@@ -1,12 +1,10 @@
 package com.example.mattk.madcow;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,32 +47,37 @@ public class SettingsActivity extends Activity implements WeightDialogFragment.W
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog, String liftName, String weightText) {
+    public void onDialogPositiveClick(DialogFragment dialog, String liftName, String result) {
         switch (liftName.toLowerCase()) {
             case "squat":
-                _settings.setStartingSquat(Integer.parseInt(weightText));
+                _settings.setStartingSquat(Integer.parseInt(result));
                 TextView squatText = (TextView) findViewById(R.id.squat_value);
-                squatText.setText(weightText);
+                squatText.setText(result);
                 break;
             case "bench":
-                _settings.setStartingBench(Integer.parseInt(weightText));
+                _settings.setStartingBench(Integer.parseInt(result));
                 TextView benchText = (TextView) findViewById(R.id.bench_value);
-                benchText.setText(weightText);
+                benchText.setText(result);
                 break;
             case "row":
-                _settings.setStartingRow(Integer.parseInt(weightText));
+                _settings.setStartingRow(Integer.parseInt(result));
                 TextView rowText = (TextView) findViewById(R.id.row_value);
-                rowText.setText(weightText);
+                rowText.setText(result);
                 break;
             case "press":
-                _settings.setStartingPress(Integer.parseInt(weightText));
+                _settings.setStartingPress(Integer.parseInt(result));
                 TextView pressText = (TextView) findViewById(R.id.press_value);
-                pressText.setText(weightText);
+                pressText.setText(result);
                 break;
             case "deadlift":
-                _settings.setStartingDeadlift(Integer.parseInt(weightText));
+                _settings.setStartingDeadlift(Integer.parseInt(result));
                 TextView deadliftText = (TextView) findViewById(R.id.deadlift_value);
-                deadliftText.setText(weightText);
+                deadliftText.setText(result);
+                break;
+            case "plate":
+                _settings.setSmallestPlate(Float.parseFloat(result));
+                TextView plateText = (TextView) findViewById(R.id.plate_value);
+                plateText.setText(result);
                 break;
         }
     }

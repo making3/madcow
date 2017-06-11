@@ -50,7 +50,7 @@ public class WeightDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_weight_dialog, null);
         final TextView setStartingWeight = (TextView)view.findViewById(R.id.setStartingWeight);
         final EditText weightText = (EditText)view.findViewById(R.id.weight);
-        setStartingWeight.setText("Set Starting " + _liftName + " weight:");
+        setStartingWeight.setText(_liftName + ": ");
         weightText.setText(_startingWeight);
         weightText.setSelection(_startingWeight.length());
 

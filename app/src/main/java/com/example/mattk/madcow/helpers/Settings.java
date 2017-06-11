@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-/**
- * Created by mattk on 6/4/2017.
- */
-
 public class Settings {
     final String SET_INTERVAL = "set_interval";
     final String SQUAT = "squat";
@@ -15,6 +11,9 @@ public class Settings {
     final String ROW = "row";
     final String PRESS = "press";
     final String DEADLIFT = "deadlift";
+    final String WEEK = "week";
+    final String DAY = "day";
+    final String PLATE = "plate";
 
     private SharedPreferences _preferences;
 
@@ -31,9 +30,7 @@ public class Settings {
     }
 
     public void setStartingSquat(int weight) {
-        SharedPreferences.Editor editor = _preferences.edit();
-        editor.putInt(SQUAT, weight);
-        editor.commit();
+        saveInt(SQUAT, weight);
     }
 
     public int getStartingBench() {
@@ -41,9 +38,7 @@ public class Settings {
     }
 
     public void setStartingBench(int weight) {
-        SharedPreferences.Editor editor = _preferences.edit();
-        editor.putInt(BENCH, weight);
-        editor.commit();
+        saveInt(BENCH, weight);
     }
 
     public int getStartingRow() {
@@ -51,9 +46,7 @@ public class Settings {
     }
 
     public void setStartingRow(int weight) {
-        SharedPreferences.Editor editor = _preferences.edit();
-        editor.putInt(ROW, weight);
-        editor.commit();
+        saveInt(ROW, weight);
     }
 
     public int getStartingPress() {
@@ -61,9 +54,7 @@ public class Settings {
     }
 
     public void setStartingPress(int weight) {
-        SharedPreferences.Editor editor = _preferences.edit();
-        editor.putInt(PRESS, weight);
-        editor.commit();
+        saveInt(PRESS, weight);
     }
 
     public int getStartingDeadlift() {
@@ -71,8 +62,42 @@ public class Settings {
     }
 
     public void setStartingDeadlift(int weight) {
+        saveInt(DEADLIFT, weight);
+    }
+
+    public float getSmallestPlate() {
+        return _preferences.getFloat(PLATE, 2.5f);
+    }
+
+    public void setSmallestPlate(float plate) {
+        saveFloat(PLATE, plate);
+    }
+
+    public void setWeek(int week){
+        saveInt(WEEK, week);
+    }
+
+    public int getWeek() {
+        return _preferences.getInt(WEEK, 1);
+    }
+
+    public void setDay(int day){
+        saveInt(DAY, day);
+    }
+
+    public int getDay() {
+        return _preferences.getInt(DAY, 1);
+    }
+
+    private void saveInt(String name, int weight) {
         SharedPreferences.Editor editor = _preferences.edit();
-        editor.putInt(DEADLIFT, weight);
+        editor.putInt(name, weight);
+        editor.commit();
+    }
+
+    private void saveFloat(String name, float weight) {
+        SharedPreferences.Editor editor = _preferences.edit();
+        editor.putFloat(name, weight);
         editor.commit();
     }
 }

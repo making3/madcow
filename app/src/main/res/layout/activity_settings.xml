@@ -159,5 +159,32 @@
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
         </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/plate"
+            android:clickable="true"
+            android:onClick="setStartingLiftClick"
+            android:padding="10dp"
+            android:background="@drawable/textlines"
+            android:layout_height="50dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="18dp"
+                    android:text="@string/smallest_plate"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:id="@+id/plate_value"
+                    android:text="2.5"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </FrameLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
