@@ -2,12 +2,15 @@ package com.example.mattk.madcow;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class WorkoutRow extends LinearLayout {
+    private TextView _liftName;
+
     public WorkoutRow(Context context) {
         super(context);
         init(context);
@@ -25,15 +28,17 @@ public class WorkoutRow extends LinearLayout {
 
     private void init(Context context) {
         View.inflate(context, R.layout.activity_workout_row, this);
+        _liftName = (TextView)findViewById(R.id.lift_name);
     }
 
     public void SetLifts(Context context, String liftName, int[] liftNumbers) {
         LinearLayout layout = (LinearLayout)findViewById(R.id.lift_row);
-        layout.removeAllViews();
+        _liftName.setText(liftName);
 
-        TextView liftNameTextView = new TextView(context);
-        liftNameTextView.setText(liftName);
-        layout.addView(liftNameTextView);
+        int count = layout.getChildCount();
+        if (count > 1) {
+            layout.removeViews(1, count - 1);
+        }
 
         LinearLayout layoutLifts = new LinearLayout(context);
         layoutLifts.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
