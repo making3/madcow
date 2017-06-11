@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -84,6 +83,7 @@ public class SettingsActivity extends Activity implements WeightDialogFragment.W
                 _settings.setSmallestPlate(Float.parseFloat(result));
                 break;
         }
+
         TextView settingText = (TextView) findViewById(textViewId);
         settingText.setText(result);
     }
