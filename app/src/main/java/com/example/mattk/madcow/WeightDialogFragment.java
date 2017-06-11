@@ -14,18 +14,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class WeightDialogFragment extends DialogFragment {
+    private int _textViewId;
     private String _liftName;
     private String _startingWeight;
     WeightDialogListener listener;
 
     public interface WeightDialogListener {
-        void onDialogPositiveClick(DialogFragment dialog, String liftName, String text);
+        void onDialogPositiveClick(DialogFragment dialog, String liftName, String text, int textViewId);
         void onDialogNegativeClick(DialogFragment dialog);
     }
 
-    public void setArguments(String startingWeight, String liftName) {
+    public void setArguments(String startingWeight, String liftName, int textViewId) {
         _liftName = liftName;
         _startingWeight = startingWeight;
+        _textViewId = textViewId;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class WeightDialogFragment extends DialogFragment {
                                  public void onClick(DialogInterface dialog, int id) {
                  String weightTextValue = weightText.getText().toString();
                 if (listener != null) {
-                    listener.onDialogPositiveClick(WeightDialogFragment.this, _liftName, weightTextValue);
+                    listener.onDialogPositiveClick(WeightDialogFragment.this, _liftName, weightTextValue, _textViewId);
                 }
             }
         })
