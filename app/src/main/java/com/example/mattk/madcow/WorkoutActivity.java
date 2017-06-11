@@ -14,11 +14,6 @@ import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
 public class WorkoutActivity extends AppCompatActivity {
-    final int WORKOUT_MONDAY = 1;
-    final int WORKOUT_WEDNESDAY = 2;
-    final int FIRST_WORKOUT = 1;
-    final int SECOND_WORKOUT = 2;
-    final int THIRD_WORKOUT = 3;
     private Settings _settings;
 
     @Override
@@ -96,10 +91,10 @@ public class WorkoutActivity extends AppCompatActivity {
 
         LiftCalculator calc = new LiftCalculator(_settings);
 
-        if (day == WORKOUT_MONDAY) {
+        if (day == Workout.MONDAY) {
             setMondayWorkouts(week, calc);
             dayText.setText("Day: Monday");
-        } else if (day == WORKOUT_WEDNESDAY) {
+        } else if (day == Workout.WEDNESDAY) {
             setWednesdayWorkouts(week, calc);
             dayText.setText("Day: Wednesday");
         } else {
@@ -109,9 +104,9 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     private void setMondayWorkouts(int week, LiftCalculator calc) {
-        addMondayLift(FIRST_WORKOUT, week, Lift.SQUAT, calc);
-        addMondayLift(SECOND_WORKOUT, week, Lift.BENCH, calc);
-        addMondayLift(THIRD_WORKOUT, week, Lift.ROW, calc);
+        addMondayLift(Workout.FIRST, week, Lift.SQUAT, calc);
+        addMondayLift(Workout.SECOND, week, Lift.BENCH, calc);
+        addMondayLift(Workout.THIRD, week, Lift.ROW, calc);
     }
 
     private void addMondayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
@@ -127,16 +122,16 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     private void setWednesdayWorkouts(int week, LiftCalculator calc) {
-        addWednesdayLift(FIRST_WORKOUT, week, Lift.SQUAT, calc);
-        addWednesdayLift(SECOND_WORKOUT, week, Lift.PRESS, calc);
-        addWednesdayLift(THIRD_WORKOUT, week, Lift.DEADLIFT, calc);
+        addWednesdayLift(Workout.FIRST, week, Lift.SQUAT, calc);
+        addWednesdayLift(Workout.SECOND, week, Lift.PRESS, calc);
+        addWednesdayLift(Workout.THIRD, week, Lift.DEADLIFT, calc);
     }
 
     private void addWednesdayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 2, lift);
         Workout workout = new Workout(lift, maxLift, calc);
 
-        if (workoutNumber == FIRST_WORKOUT) {
+        if (workoutNumber == Workout.FIRST) {
             int warmupToWeight = calc.getMaxWeight(week, 1, lift);
             workout.addWarmup(4, warmupToWeight);
             workout.addWarmup(3, warmupToWeight);
@@ -152,9 +147,9 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     private void setFridayWorkouts(int week, LiftCalculator calc) {
-        addFridayLift(FIRST_WORKOUT, week, Lift.SQUAT, calc);
-        addFridayLift(SECOND_WORKOUT, week, Lift.BENCH, calc);
-        addFridayLift(THIRD_WORKOUT, week, Lift.ROW, calc);
+        addFridayLift(Workout.FIRST, week, Lift.SQUAT, calc);
+        addFridayLift(Workout.SECOND, week, Lift.BENCH, calc);
+        addFridayLift(Workout.THIRD, week, Lift.ROW, calc);
     }
 
     private void addFridayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
@@ -179,10 +174,10 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     private WorkoutRow getWorkoutRow(int workoutNumber) {
-        if (workoutNumber == FIRST_WORKOUT) {
+        if (workoutNumber == Workout.FIRST) {
             return (WorkoutRow) findViewById(R.id.firstWorkout);
         }
-        if (workoutNumber == SECOND_WORKOUT) {
+        if (workoutNumber == Workout.SECOND) {
             return (WorkoutRow) findViewById(R.id.secondWorkout);
         }
         return (WorkoutRow) findViewById(R.id.thirdWorkout);

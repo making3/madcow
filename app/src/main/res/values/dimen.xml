@@ -3,4 +3,5 @@
     <dimen name="card_height">100dp</dimen>
     <dimen name="card_margin_bottom">5dp</dimen>
     <dimen name="weekday_text_size">20dp</dimen>
+    <dimen name="text_header">18sp</dimen>
 </resources>

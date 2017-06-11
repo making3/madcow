@@ -7,6 +7,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Workout {
+    public static final int MONDAY = 1;
+    public static final int WEDNESDAY = 2;
+    public static final int FIRST = 1;
+    public static final int SECOND = 2;
+    public static final int THIRD = 3;
+
     private int _maxLift;
     private Lift _lift;
     private List<WorkoutSet> _sets;
