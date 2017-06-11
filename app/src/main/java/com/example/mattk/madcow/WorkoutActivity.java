@@ -171,8 +171,7 @@ public class WorkoutActivity extends Activity {
 
     private void setLifts(int workoutNumber, Lift lift, int[] lifts) {
         WorkoutRow row = getWorkoutRow(workoutNumber);
-        row.SetLiftName(lift);
-        row.SetLifts(this, lifts);
+        row.SetLifts(this, lift.toString(), lifts);
     }
 
     private WorkoutRow getWorkoutRow(int workoutNumber) {

@@ -16,27 +16,20 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginBottom="35dp"
-            android:id="@+id/firstWorkout"
-            app:liftName="Squat"
-            />
+            android:id="@+id/firstWorkout" />
         <com.example.mattk.madcow.WorkoutRow
             xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginBottom="35dp"
-            android:id="@+id/secondWorkout"
-            app:liftName="Bench" />
+            android:id="@+id/secondWorkout" />
 
         <com.example.mattk.madcow.WorkoutRow
             xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginBottom="35dp"
-            android:id="@+id/thirdWorkout"
-            app:liftName="Rows"
-            />
+            android:id="@+id/thirdWorkout" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="368dp"

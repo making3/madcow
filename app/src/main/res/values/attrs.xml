@@ -1,5 +1,2 @@
 <resources>
-    <declare-styleable name="WorkoutRow">
-        <attr name="liftName" format="string" />
-    </declare-styleable>
 </resources>
