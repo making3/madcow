@@ -89,19 +89,22 @@ public class WorkoutActivity extends AppCompatActivity {
         int week = _settings.getWeek();
         int day = _settings.getDay();
 
+        TextView dayText = (TextView)findViewById(R.id.day);
+        TextView weekText = (TextView)findViewById(R.id.week);
+        weekText.setText("Week: " + week);
+
         LiftCalculator calc = new LiftCalculator(_settings);
 
         if (day == WORKOUT_MONDAY) {
             setMondayWorkouts(week, calc);
+            dayText.setText("Day: Monday");
         } else if (day == WORKOUT_WEDNESDAY) {
             setWednesdayWorkouts(week, calc);
+            dayText.setText("Day: Wednesday");
         } else {
             setFridayWorkouts(week, calc);
+            dayText.setText("Day: Friday");
         }
-        TextView dayText = (TextView)findViewById(R.id.day);
-        TextView weekText = (TextView)findViewById(R.id.week);
-        weekText.setText("Week: " + week);
-        dayText.setText("Day: " + day);
     }
 
     private void setMondayWorkouts(int week, LiftCalculator calc) {
