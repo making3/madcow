@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
+import com.example.mattk.madcow.data.WorkoutSet;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
@@ -115,12 +116,12 @@ public class WorkoutActivity extends AppCompatActivity {
 
     private void addMondayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 1, lift);
-        int[] lifts = {
-            calc.getWarmupWeight(maxLift, 4),
-            calc.getWarmupWeight(maxLift, 3),
-            calc.getWarmupWeight(maxLift, 2),
-            calc.getWarmupWeight(maxLift, 1),
-            maxLift
+        WorkoutSet[] lifts = {
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 4)),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 3)),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 2)),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 1)),
+            new WorkoutSet(maxLift, 5, true)
         };
         setLifts(workoutNumber, lift, lifts);
     }
@@ -134,18 +135,18 @@ public class WorkoutActivity extends AppCompatActivity {
     private void addWednesdayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 2, lift);
 
-        int[] lifts = {
-            calc.getWarmupWeight(maxLift, 3),
-            calc.getWarmupWeight(maxLift, 2),
-            calc.getWarmupWeight(maxLift, 1),
-            maxLift
+        WorkoutSet[] lifts = {
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 3)),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 2)),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 1)),
+            new WorkoutSet(maxLift, 5, true)
         };
 
         if (workoutNumber == FIRST_WORKOUT) {
             int maxSquat = calc.getMaxWeight(week, 1, lift);
-            lifts[0] = calc.getWarmupWeight(maxSquat, 4);
-            lifts[1] = calc.getWarmupWeight(maxSquat, 3);
-            lifts[2] = maxLift;
+            lifts[0] = new WorkoutSet(calc.getWarmupWeight(maxSquat, 4));
+            lifts[1] = new WorkoutSet(calc.getWarmupWeight(maxSquat, 3));
+            lifts[2] = new WorkoutSet(maxLift, 5, true);
         }
 
         setLifts(workoutNumber, lift, lifts);
@@ -161,18 +162,18 @@ public class WorkoutActivity extends AppCompatActivity {
         int maxLift = calc.getMaxWeight(week, 3, lift);
         int thirdWarmup = calc.getWarmupWeight(maxLift, 2);
 
-        int[] lifts = {
-            calc.getWarmupWeight(maxLift, 4),
-            calc.getWarmupWeight(maxLift, 3),
-            thirdWarmup,
-            calc.getWarmupWeight(maxLift, 1),
-            maxLift,
-            thirdWarmup
+        WorkoutSet[] lifts = {
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 4)),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 3)),
+            new WorkoutSet(thirdWarmup),
+            new WorkoutSet(calc.getWarmupWeight(maxLift, 1)),
+            new WorkoutSet(maxLift, 3, true),
+            new WorkoutSet(thirdWarmup, 8)
         };
         setLifts(workoutNumber, lift, lifts);
     }
 
-    private void setLifts(int workoutNumber, Lift lift, int[] lifts) {
+    private void setLifts(int workoutNumber, Lift lift, WorkoutSet[] lifts) {
         WorkoutRow row = getWorkoutRow(workoutNumber);
         row.SetLifts(this, lift.toString(), lifts);
     }

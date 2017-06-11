@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.mattk.madcow.data.WorkoutSet;
+
 public class WorkoutRow extends LinearLayout {
     private TextView _liftName;
 
@@ -31,7 +33,7 @@ public class WorkoutRow extends LinearLayout {
         _liftName = (TextView)findViewById(R.id.lift_name);
     }
 
-    public void SetLifts(Context context, String liftName, int[] liftNumbers) {
+    public void SetLifts(Context context, String liftName, WorkoutSet[] sets) {
         LinearLayout layout = (LinearLayout)findViewById(R.id.lift_row);
         _liftName.setText(liftName);
 
@@ -43,8 +45,9 @@ public class WorkoutRow extends LinearLayout {
         LinearLayout layoutLifts = new LinearLayout(context);
         layoutLifts.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        for (int lift : liftNumbers) {
-            layoutLifts.addView(new IndividualLift(context, lift));
+        for (WorkoutSet set : sets) {
+            String setText = Integer.toString(set.getWeight()) + "x" + Integer.toString(set.getReps());
+            layoutLifts.addView(new IndividualLift(context, setText, set.isMaxLift()));
         }
 
         layout.addView(layoutLifts);
