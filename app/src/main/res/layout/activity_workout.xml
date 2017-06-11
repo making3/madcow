@@ -1,71 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/viewBg"
+    android:orientation="vertical"
+    android:padding="8dp"
     tools:context="com.example.mattk.madcow.WorkoutActivity">
-
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        app:layout_editor_absoluteY="8dp"
-        app:layout_editor_absoluteX="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <com.example.mattk.madcow.WorkoutRow
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="35dp"
+            android:layout_height="@dimen/card_height"
+            android:layout_marginBottom="@dimen/card_margin_bottom"
             android:id="@+id/firstWorkout" />
         <com.example.mattk.madcow.WorkoutRow
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="35dp"
+            android:layout_height="@dimen/card_height"
+            android:layout_marginBottom="@dimen/card_margin_bottom"
             android:id="@+id/secondWorkout" />
 
         <com.example.mattk.madcow.WorkoutRow
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="35dp"
+            android:layout_height="@dimen/card_height"
+            android:layout_marginBottom="@dimen/card_margin_bottom"
             android:id="@+id/thirdWorkout" />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:gravity="bottom"
-        app:layout_editor_absoluteY="0dp"
-        app:layout_editor_absoluteX="8dp">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/prev_day"
-        android:gravity="center"
-        android:id="@+id/prev_day"
-        android:onClick="prevDayOnClick"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/next_day"
-        android:id="@+id/next_day"
-        android:gravity="center"
-        android:onClick="nextDayOnClick"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/prev_day"
+            android:gravity="center"
+            android:id="@+id/prev_day"
+            android:onClick="prevDayOnClick"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/next_day"
+            android:id="@+id/next_day"
+            android:gravity="center"
+            android:onClick="nextDayOnClick"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/week"
-            />
+            android:id="@+id/week" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/day"
-            />
+            android:id="@+id/day" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
 

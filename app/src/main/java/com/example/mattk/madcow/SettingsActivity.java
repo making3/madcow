@@ -1,9 +1,9 @@
 package com.example.mattk.madcow;
 
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.mattk.madcow.helpers.Settings;
 
-public class SettingsActivity extends Activity implements WeightDialogFragment.WeightDialogListener {
+public class SettingsActivity extends AppCompatActivity implements WeightDialogFragment.WeightDialogListener {
     private Settings _settings;
 
     @Override
@@ -32,7 +32,7 @@ public class SettingsActivity extends Activity implements WeightDialogFragment.W
         setContentView(R.layout.activity_settings);
 
         _settings = new Settings(this);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView squatText = (TextView)findViewById(R.id.squat_value);
         TextView benchText = (TextView)findViewById(R.id.bench_value);

@@ -1,8 +1,8 @@
 package com.example.mattk.madcow;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +12,7 @@ import com.example.mattk.madcow.data.Lift;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
-public class WorkoutActivity extends Activity {
+public class WorkoutActivity extends AppCompatActivity {
     final int WORKOUT_MONDAY = 1;
     final int WORKOUT_WEDNESDAY = 2;
     final int FIRST_WORKOUT = 1;
