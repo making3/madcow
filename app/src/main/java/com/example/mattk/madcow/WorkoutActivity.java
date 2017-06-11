@@ -125,34 +125,30 @@ public class WorkoutActivity extends Activity {
     }
 
     private void setWednesdayWorkouts(int week, LiftCalculator calc) {
-        addWednesdaySquat(week, calc);
+        addWednesdayLift(FIRST_WORKOUT, week, Lift.SQUAT, calc);
         addWednesdayLift(SECOND_WORKOUT, week, Lift.PRESS, calc);
         addWednesdayLift(THIRD_WORKOUT, week, Lift.DEADLIFT, calc);
     }
 
     private void addWednesdayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 2, lift);
+
         int[] lifts = new int[4];
-        lifts[0] = calc.getWarmupWeight(maxLift, 3);
-        lifts[1] = calc.getWarmupWeight(maxLift, 2);
-        lifts[2] = calc.getWarmupWeight(maxLift, 1);
+        if (workoutNumber == FIRST_WORKOUT) {
+            int maxSquat = calc.getMaxWeight(week, 1, lift);
+            lifts[0] = calc.getWarmupWeight(maxSquat, 4);
+            lifts[1] = calc.getWarmupWeight(maxSquat, 3);
+            lifts[2] = maxLift;
+        } else {
+            lifts[0] = calc.getWarmupWeight(maxLift, 3);
+            lifts[1] = calc.getWarmupWeight(maxLift, 2);
+            lifts[2] = calc.getWarmupWeight(maxLift, 1);
+        }
         lifts[3] = maxLift;
 
         WorkoutRow row = getWorkout(workoutNumber);
         row.SetLiftName(lift);
         row.SetLifts(this, lifts);
-    }
-
-    private void addWednesdaySquat(int week, LiftCalculator calc) {
-        int maxSquat = calc.getMaxWeight(week, 2, Lift.SQUAT);
-
-        int[] lifts = new int[4];
-        lifts[0] = calc.getWarmupWeight(maxSquat, 4);
-        lifts[1] = calc.getWarmupWeight(maxSquat, 3);
-        lifts[2] = maxSquat;
-        lifts[3] = maxSquat;
-
-        getWorkout(1).SetLifts(this, lifts);
     }
 
     private void setFridayWorkouts(int week, LiftCalculator calc) {
