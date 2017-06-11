@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.data.WorkoutSet;
+import com.example.mattk.madcow.data.Workout;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
@@ -116,14 +116,14 @@ public class WorkoutActivity extends AppCompatActivity {
 
     private void addMondayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 1, lift);
-        WorkoutSet[] lifts = {
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 4)),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 3)),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 2)),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 1)),
-            new WorkoutSet(maxLift, 5, true)
-        };
-        setLifts(workoutNumber, lift, lifts);
+        Workout workout = new Workout(lift, maxLift, calc);
+        workout.addWarmup(4);
+        workout.addWarmup(3);
+        workout.addWarmup(2);
+        workout.addWarmup(1);
+        workout.addMaxLift();
+
+        setLifts(workoutNumber, workout);
     }
 
     private void setWednesdayWorkouts(int week, LiftCalculator calc) {
@@ -134,22 +134,21 @@ public class WorkoutActivity extends AppCompatActivity {
 
     private void addWednesdayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 2, lift);
-
-        WorkoutSet[] lifts = {
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 3)),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 2)),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 1)),
-            new WorkoutSet(maxLift, 5, true)
-        };
+        Workout workout = new Workout(lift, maxLift, calc);
 
         if (workoutNumber == FIRST_WORKOUT) {
-            int maxSquat = calc.getMaxWeight(week, 1, lift);
-            lifts[0] = new WorkoutSet(calc.getWarmupWeight(maxSquat, 4));
-            lifts[1] = new WorkoutSet(calc.getWarmupWeight(maxSquat, 3));
-            lifts[2] = new WorkoutSet(maxLift, 5, true);
+            int warmupToWeight = calc.getMaxWeight(week, 1, lift);
+            workout.addWarmup(4, warmupToWeight);
+            workout.addWarmup(3, warmupToWeight);
+            workout.addMaxLift();
+        } else {
+            workout.addWarmup(3);
+            workout.addWarmup(2);
+            workout.addWarmup(1);
         }
+        workout.addMaxLift();
 
-        setLifts(workoutNumber, lift, lifts);
+        setLifts(workoutNumber, workout);
     }
 
     private void setFridayWorkouts(int week, LiftCalculator calc) {
@@ -160,22 +159,23 @@ public class WorkoutActivity extends AppCompatActivity {
 
     private void addFridayLift(int workoutNumber, int week, Lift lift, LiftCalculator calc) {
         int maxLift = calc.getMaxWeight(week, 3, lift);
-        int thirdWarmup = calc.getWarmupWeight(maxLift, 2);
 
-        WorkoutSet[] lifts = {
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 4)),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 3)),
-            new WorkoutSet(thirdWarmup),
-            new WorkoutSet(calc.getWarmupWeight(maxLift, 1)),
-            new WorkoutSet(maxLift, 3, true),
-            new WorkoutSet(thirdWarmup, 8)
-        };
-        setLifts(workoutNumber, lift, lifts);
+        Workout workout = new Workout(lift, maxLift, calc);
+        workout.addWarmup(4);
+        workout.addWarmup(3);
+        workout.addWarmup(2);
+        workout.addWarmup(1);
+        workout.addMaxLift();
+
+        int warmupToWeight = calc.getMaxWeight(week, 1, lift);
+        workout.addWarmup(2, warmupToWeight);
+
+        setLifts(workoutNumber, workout);
     }
 
-    private void setLifts(int workoutNumber, Lift lift, WorkoutSet[] lifts) {
+    private void setLifts(int workoutNumber, Workout workout) {
         WorkoutRow row = getWorkoutRow(workoutNumber);
-        row.SetLifts(this, lift.toString(), lifts);
+        row.SetLifts(this, workout);
     }
 
     private WorkoutRow getWorkoutRow(int workoutNumber) {

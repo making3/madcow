@@ -24,7 +24,6 @@ public class IndividualLift extends LinearLayout {
         if (isMaxLift) {
             tv.setBackground(getResources().getDrawable(R.drawable.max_weight_circle));
             tv.setGravity(Gravity.CENTER);
-            // tv.setBackgroundColor(getResources().getColor(R.color.primary_light));
         }
         addView(tv);
     }
