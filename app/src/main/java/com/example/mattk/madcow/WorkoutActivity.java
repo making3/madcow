@@ -36,7 +36,6 @@ public class WorkoutActivity extends BaseActivity {
 
     public void completeWorkoutClick(View v) {
         if (_day == 3) {
-            int week = _settings.getWeek();
             _settings.setDay(1);
             _settings.setWeek(_week + 1);
         } else {
@@ -121,10 +120,10 @@ public class WorkoutActivity extends BaseActivity {
         workout.addWarmup(3);
         workout.addWarmup(2);
         workout.addWarmup(1);
-        workout.addMaxLift();
+        workout.addMaxLift(3);
 
         int warmupToWeight = calc.getMaxWeight(week, 1, lift);
-        workout.addWarmup(2, warmupToWeight);
+        workout.addWarmup(2, warmupToWeight, 8);
 
         setLifts(workoutNumber, workout);
     }

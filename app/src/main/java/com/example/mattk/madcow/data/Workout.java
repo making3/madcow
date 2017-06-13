@@ -30,12 +30,19 @@ public class Workout {
     }
 
     public void addWarmup(int offset, int warmupToWeight) {
+        addWarmup(offset, warmupToWeight, 5);
+    }
+
+    public void addWarmup(int offset, int warmupToWeight, int reps) {
         int warmup = _calc.getWarmupWeight(warmupToWeight, offset);
-        addSet(warmup);
+        addSet(warmup, reps);
     }
 
     public void addMaxLift() {
-        addSet(_maxLift);
+        addMaxLift(5);
+    }
+    public void addMaxLift(int reps) {
+        addSet(_maxLift, reps);
     }
 
     public void addSet(int weight) {
