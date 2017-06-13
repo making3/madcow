@@ -11,6 +11,8 @@ import com.example.mattk.madcow.helpers.Settings;
 
 public class WorkoutActivity extends BaseActivity {
     private Settings _settings;
+    private int _day;
+    private int _week;
 
     @Override
     protected void onResume() {
@@ -21,6 +23,10 @@ public class WorkoutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle b = getIntent().getExtras();
+        _week = b.getInt("week");
+        _day = b.getInt("day");
+
         setContentView(R.layout.activity_workout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         _settings = new Settings(this);
@@ -28,50 +34,32 @@ public class WorkoutActivity extends BaseActivity {
         loadWorkouts();
     }
 
-    public void nextDayOnClick(View v) {
-        int day = _settings.getDay();
-        if (day == 3) {
+    public void completeWorkoutClick(View v) {
+        if (_day == 3) {
             int week = _settings.getWeek();
             _settings.setDay(1);
-            _settings.setWeek(week + 1);
+            _settings.setWeek(_week + 1);
         } else {
-            _settings.setDay(day + 1);
+            _settings.setDay(_day + 1);
         }
-        loadWorkouts();
-    }
-
-    public void prevDayOnClick(View v) {
-        int day = _settings.getDay();
-        if (day == 1) {
-            int week = _settings.getWeek();
-            if (week != 1) { // temporarily prevent from going to week 0 day 3 (does not exist)
-                _settings.setWeek(week - 1);
-                _settings.setDay(3);
-            }
-        } else {
-            _settings.setDay(day - 1);
-        }
-        loadWorkouts();
+        this.finish();
     }
 
     public void loadWorkouts() {
-        int week = _settings.getWeek();
-        int day = _settings.getDay();
-
         TextView dayText = (TextView)findViewById(R.id.day);
         TextView weekText = (TextView)findViewById(R.id.week);
-        weekText.setText("Week: " + week);
+        weekText.setText("Week: " + _week);
 
         LiftCalculator calc = new LiftCalculator(_settings);
 
-        if (day == Workout.MONDAY) {
-            setMondayWorkouts(week, calc);
+        if (_day == Workout.MONDAY) {
+            setMondayWorkouts(_week, calc);
             dayText.setText("Day: Monday");
-        } else if (day == Workout.WEDNESDAY) {
-            setWednesdayWorkouts(week, calc);
+        } else if (_day == Workout.WEDNESDAY) {
+            setWednesdayWorkouts(_week, calc);
             dayText.setText("Day: Wednesday");
         } else {
-            setFridayWorkouts(week, calc);
+            setFridayWorkouts(_week, calc);
             dayText.setText("Day: Friday");
         }
     }

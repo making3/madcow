@@ -33,20 +33,41 @@ public class MainActivity extends BaseActivity {
         int currentDay = settings.getDay();
         int currentWeek = settings.getWeek();
 
-        int lastDay = currentDay - 1 == 0 ? (currentWeek == 1 ? 1 : 3) : currentDay - 1;
-        int lastWeek = currentWeek == 1 ? (currentDay == 1 ? 0 : 1) : (currentDay == 1 ? currentWeek - 1 : currentWeek);
+        int lastDay = getLastDay(currentDay, currentWeek);
+        int lastWeek = getLastWeek(currentDay, currentWeek);
 
         listPreviousWorkouts(lastWeek, lastDay, settings);
         listCurrentWorkouts(currentWeek, currentDay, settings);
     }
 
+    private int getLastDay(int currentDay, int currentWeek) {
+        return currentDay - 1 == 0 ? (currentWeek == 1 ? 1 : 3) : currentDay - 1;
+    }
+
+    private int getLastWeek(int currentDay, int currentWeek) {
+        return currentWeek == 1 ? (currentDay == 1 ? 0 : 1) : (currentDay == 1 ? currentWeek - 1 : currentWeek);
+    }
+
     public void nextWorkout(View v) {
+        Settings settings = new Settings(this);
+
         Intent workoutIntent = new Intent(MainActivity.this, WorkoutActivity.class);
+        workoutIntent.putExtra("day", settings.getDay());
+        workoutIntent.putExtra("week", settings.getWeek());
         MainActivity.this.startActivity(workoutIntent);
     }
 
     public void previousWorkout(View v) {
-        // TODO: Implement
+        Settings settings = new Settings(this);
+        int currentDay = settings.getDay();
+        int currentWeek = settings.getWeek();
+
+        int lastDay = getLastDay(currentDay, currentWeek);
+        int lastWeek = getLastWeek(currentDay, currentWeek);
+        Intent workoutIntent = new Intent(MainActivity.this, WorkoutActivity.class);
+        workoutIntent.putExtra("day", lastDay);
+        workoutIntent.putExtra("week", lastWeek);
+        MainActivity.this.startActivity(workoutIntent);
     }
 
     private void listCurrentWorkouts(int week, int day, Settings settings) {

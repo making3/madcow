@@ -56,20 +56,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/prev_day"
-            android:gravity="center"
-            android:id="@+id/prev_day"
-            android:onClick="prevDayOnClick" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/next_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_workout"
             android:id="@+id/next_day"
             android:gravity="center"
-            android:layout_gravity="right"
-            android:onClick="nextDayOnClick" />
+            android:layout_gravity="center"
+            android:onClick="completeWorkoutClick" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Madcow</string>
     <string name="lift_height">150dp</string>
-    <string name="next_day">Next</string>
-    <string name="prev_day">Previous</string>
+    <string name="complete_workout">Complete Workout</string>
     <string name="lift_squat">Squat</string>
     <string name="lift_bench">Bench</string>
     <string name="lift_row">Row</string>
