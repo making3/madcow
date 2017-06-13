@@ -70,6 +70,8 @@ public class MainActivity extends BaseActivity {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT);
+
+        layoutParams.setMargins(0, 10, 0, 0);
         FrameLayout layout = new FrameLayout(this);
         layout.setLayoutParams(layoutParams);
 
@@ -80,10 +82,12 @@ public class MainActivity extends BaseActivity {
         TextView textViewLiftName = new TextView(this);
         textViewLiftName.setText(lift.toString());
         textViewLiftName.setLayoutParams(params);
+        textViewLiftName.setTextSize(getResources().getDimension(R.dimen.lift_preview_text));
         layout.addView(textViewLiftName);
 
         TextView textViewWeight = new TextView(this);
         textViewWeight.setText(Integer.toString(weight));
+        textViewWeight.setTextSize(getResources().getDimension(R.dimen.lift_preview_text));
         textViewWeight.setLayoutParams(params);
 
         LinearLayout.LayoutParams liftWeightParams = new LinearLayout.LayoutParams(
