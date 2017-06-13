@@ -1,10 +1,6 @@
 package com.example.mattk.madcow;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,7 +9,7 @@ import com.example.mattk.madcow.data.Workout;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
-public class WorkoutActivity extends AppCompatActivity {
+public class WorkoutActivity extends BaseActivity {
     private Settings _settings;
 
     @Override
@@ -23,33 +19,10 @@ public class WorkoutActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent settingsIntent = new Intent(WorkoutActivity.this, SettingsActivity.class);
-                WorkoutActivity.this.startActivity(settingsIntent);
-                return true;
-            case R.id.reset:
-                _settings.setWeek(1);
-                _settings.setDay(1);
-                loadWorkouts();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         _settings = new Settings(this);
 
         loadWorkouts();

@@ -3,8 +3,6 @@ package com.example.mattk.madcow;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -12,19 +10,8 @@ import android.widget.TextView;
 
 import com.example.mattk.madcow.helpers.Settings;
 
-public class SettingsActivity extends AppCompatActivity implements WeightDialogFragment.WeightDialogListener {
+public class SettingsActivity extends BaseActivity implements WeightDialogFragment.WeightDialogListener {
     private Settings _settings;
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

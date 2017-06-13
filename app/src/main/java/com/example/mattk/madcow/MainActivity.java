@@ -1,10 +1,7 @@
 package com.example.mattk.madcow;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.data.Workout;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
