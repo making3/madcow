@@ -45,10 +45,6 @@ public class Workout {
         addSet(_maxLift, reps);
     }
 
-    public void addSet(int weight) {
-        addSet(weight, 5);
-    }
-
     public void addSet(int weight, int reps) {
         _sets.add(new WorkoutSet(weight, reps, weight == _maxLift));
     }
@@ -59,5 +55,16 @@ public class Workout {
 
     public String getLiftName() {
         return _lift.toString();
+    }
+
+    public static String getDayString(int day){
+        switch (day){
+            case MONDAY:
+                return "Monday";
+            case WEDNESDAY:
+                return "Wednesday";
+            default:
+                return "Friday";
+        }
     }
 }
