@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.data.Workout;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
@@ -94,19 +93,32 @@ public class MainActivity extends BaseActivity {
 
     private void listWorkouts(int week, int day, LinearLayout layout, Settings settings) {
         LiftCalculator calc = new LiftCalculator(settings);
-        layout.addView((getWeekDayLayout(week, day)));
-        layout.addView(getWorkoutLayout(Lift.SQUAT, calc.getMaxWeight(week, day, Lift.SQUAT)));
+        layout.addView(getWorkoutRow("Week " + Integer.toString(week),
+                Integer.toString(day),
+                getResources().getColor(R.color.secondary_text),
+                getResources().getDimension(R.dimen.lift_preview_week_day_text)));
+
+        int workoutColor = getResources().getColor(R.color.primary_text);
+        float workoutDimensions = getResources().getDimension(R.dimen.lift_preview_text);
+        String squatWeight = Integer.toString(calc.getMaxWeight(week, day, Lift.SQUAT));
+        layout.addView(getWorkoutRow(Lift.SQUAT.toString(), squatWeight, workoutColor, workoutDimensions));
 
         if (day == 1 || day == 3) {
-            layout.addView(getWorkoutLayout(Lift.BENCH, calc.getMaxWeight(week, day, Lift.BENCH)));
-            layout.addView(getWorkoutLayout(Lift.ROW, calc.getMaxWeight(week, day, Lift.ROW)));
+            String benchWeight = Integer.toString(calc.getMaxWeight(week, day, Lift.BENCH));
+            layout.addView(getWorkoutRow(Lift.BENCH.toString(), benchWeight, workoutColor, workoutDimensions));
+
+            String rowWeight = Integer.toString(calc.getMaxWeight(week, day, Lift.ROW));
+            layout.addView(getWorkoutRow(Lift.ROW.toString(), rowWeight, workoutColor, workoutDimensions));
         } else {
-            layout.addView(getWorkoutLayout(Lift.PRESS, calc.getMaxWeight(week, day, Lift.PRESS)));
-            layout.addView(getWorkoutLayout(Lift.DEADLIFT, calc.getMaxWeight(week, day, Lift.DEADLIFT)));
+            String pressWeight = Integer.toString(calc.getMaxWeight(week, day, Lift.PRESS));
+            layout.addView(getWorkoutRow(Lift.PRESS.toString(), pressWeight, workoutColor, workoutDimensions));
+
+            String deadliftWeight = Integer.toString(calc.getMaxWeight(week, day, Lift.DEADLIFT));
+            layout.addView(getWorkoutRow(Lift.DEADLIFT.toString(), deadliftWeight, workoutColor, workoutDimensions));
         }
     }
 
-    private FrameLayout getWeekDayLayout(int week, int day) {
+    private FrameLayout getWorkoutRow(String leftText, String rightText, int color, float dimensions) {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT);
@@ -119,57 +131,18 @@ public class MainActivity extends BaseActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        TextView textViewWeek = new TextView(this);
-        textViewWeek.setText("Week " + Integer.toString(week));
-        textViewWeek.setLayoutParams(params);
-        textViewWeek.setTextColor(getResources().getColor(R.color.secondary_text));
-        textViewWeek.setTextSize(getResources().getDimension(R.dimen.lift_preview_week_day_text));
-        layout.addView(textViewWeek);
+        TextView textViewLeft = new TextView(this);
+        textViewLeft.setText(leftText);
+        textViewLeft.setLayoutParams(params);
+        textViewLeft.setTextColor(color);
+        textViewLeft.setTextSize(dimensions);
+        layout.addView(textViewLeft);
 
-        TextView textViewDay = new TextView(this);
-        textViewDay.setText(Workout.getDayString(day));
-        textViewDay.setTextColor(getResources().getColor(R.color.secondary_text));
-        textViewWeek.setTextSize(getResources().getDimension(R.dimen.lift_preview_week_day_text));
-        textViewDay.setLayoutParams(params);
-
-        LinearLayout.LayoutParams liftWeightParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        LinearLayout liftWeightLayout = new LinearLayout(this);
-        liftWeightLayout.setGravity(Gravity.RIGHT);
-        liftWeightLayout.setLayoutParams(liftWeightParams);
-        liftWeightLayout.addView(textViewDay);
-
-        layout.addView(liftWeightLayout);
-
-        return layout;
-    }
-
-    private FrameLayout getWorkoutLayout(Lift lift, int weight) {
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT);
-
-        layoutParams.setMargins(0, 10, 0, 0);
-        FrameLayout layout = new FrameLayout(this);
-        layout.setLayoutParams(layoutParams);
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        TextView textViewLiftName = new TextView(this);
-        textViewLiftName.setText(lift.toString());
-        textViewLiftName.setLayoutParams(params);
-        textViewLiftName.setTextColor(getResources().getColor(R.color.primary_text));
-        textViewLiftName.setTextSize(getResources().getDimension(R.dimen.lift_preview_text));
-        layout.addView(textViewLiftName);
-
-        TextView textViewWeight = new TextView(this);
-        textViewWeight.setText(Integer.toString(weight));
-        textViewWeight.setTextColor(getResources().getColor(R.color.primary_text));
-        textViewWeight.setTextSize(getResources().getDimension(R.dimen.lift_preview_text));
-        textViewWeight.setLayoutParams(params);
+        TextView textViewRight = new TextView(this);
+        textViewRight.setText(rightText);
+        textViewRight.setTextColor(color);
+        textViewRight.setTextSize(dimensions);
+        textViewRight.setLayoutParams(params);
 
         LinearLayout.LayoutParams liftWeightParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -177,7 +150,7 @@ public class MainActivity extends BaseActivity {
         LinearLayout liftWeightLayout = new LinearLayout(this);
         liftWeightLayout.setGravity(Gravity.RIGHT);
         liftWeightLayout.setLayoutParams(liftWeightParams);
-        liftWeightLayout.addView(textViewWeight);
+        liftWeightLayout.addView(textViewRight);
 
         layout.addView(liftWeightLayout);
 
