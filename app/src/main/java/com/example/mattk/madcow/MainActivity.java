@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
         int currentWeek = settings.getWeek();
 
         int lastDay = currentDay - 1 == 0 ? (currentWeek == 1 ? 1 : 3) : currentDay - 1;
-        int lastWeek = currentWeek == 1 ? 1 : (currentDay == 1 ? currentWeek - 1 : currentWeek);
+        int lastWeek = currentWeek == 1 ? (currentDay == 1 ? 0 : 1) : (currentDay == 1 ? currentWeek - 1 : currentWeek);
 
         listPreviousWorkouts(lastWeek, lastDay, settings);
         listCurrentWorkouts(currentWeek, currentDay, settings);
@@ -60,13 +60,14 @@ public class MainActivity extends BaseActivity {
     }
 
     public void listPreviousWorkouts(int week, int day, Settings settings) {
-        // TODO: Hide this if the current week/day is the first week/day
         LinearLayout layout = (LinearLayout) findViewById(R.id.lastWorkouts);
         int count = layout.getChildCount();
         if (count > 1) {
             layout.removeViews(1, count - 1);
         }
-        listWorkouts(week, day, layout, settings);
+        if (week != 0) {
+            listWorkouts(week, day, layout, settings);
+        }
     }
 
     private void listWorkouts(int week, int day, LinearLayout layout, Settings settings) {
@@ -119,20 +120,4 @@ public class MainActivity extends BaseActivity {
 
         return layout;
     }
-
-
-                /*<FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-                    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Squat"/>
-                    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
-        android:text="245"/>
-                </FrameLayout>*/
-
 }
