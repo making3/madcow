@@ -2,6 +2,7 @@ package com.example.mattk.madcow;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,10 +97,10 @@ public class MainActivity extends BaseActivity {
         LiftCalculator calc = new LiftCalculator(settings);
         layout.addView(getWorkoutRow("Week " + Integer.toString(week),
                 Workout.getDayString(day),
-                getResources().getColor(R.color.secondary_text),
+                ContextCompat.getColor(this, R.color.secondary_text),
                 getResources().getDimension(R.dimen.lift_preview_week_day_text)));
 
-        int workoutColor = getResources().getColor(R.color.primary_text);
+        int workoutColor = ContextCompat.getColor(this, R.color.primary_text);
         float workoutDimensions = getResources().getDimension(R.dimen.lift_preview_text);
         String squatWeight = Integer.toString(calc.getMaxWeight(week, day, Lift.SQUAT));
         layout.addView(getWorkoutRow(Lift.SQUAT.toString(), squatWeight, workoutColor, workoutDimensions));
