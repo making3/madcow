@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mattk.madcow.data.Lift;
+import com.example.mattk.madcow.data.Workout;
 import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
@@ -94,7 +95,7 @@ public class MainActivity extends BaseActivity {
     private void listWorkouts(int week, int day, LinearLayout layout, Settings settings) {
         LiftCalculator calc = new LiftCalculator(settings);
         layout.addView(getWorkoutRow("Week " + Integer.toString(week),
-                Integer.toString(day),
+                Workout.getDayString(day),
                 getResources().getColor(R.color.secondary_text),
                 getResources().getDimension(R.dimen.lift_preview_week_day_text)));
 
