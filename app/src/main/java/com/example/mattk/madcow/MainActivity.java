@@ -14,11 +14,20 @@ import com.example.mattk.madcow.helpers.LiftCalculator;
 import com.example.mattk.madcow.helpers.Settings;
 
 public class MainActivity extends BaseActivity {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadWorkouts();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadWorkouts();
+    }
+
+    private void loadWorkouts() {
         Settings settings = new Settings(this);
 
         int currentDay = settings.getDay();
@@ -42,12 +51,21 @@ public class MainActivity extends BaseActivity {
 
     private void listCurrentWorkouts(int week, int day, Settings settings) {
         LinearLayout layout = (LinearLayout) findViewById(R.id.nextWorkouts);
+
+        int count = layout.getChildCount();
+        if (count > 1) {
+            layout.removeViews(1, count - 1);
+        }
         listWorkouts(week, day, layout, settings);
     }
 
     public void listPreviousWorkouts(int week, int day, Settings settings) {
         // TODO: Hide this if the current week/day is the first week/day
         LinearLayout layout = (LinearLayout) findViewById(R.id.lastWorkouts);
+        int count = layout.getChildCount();
+        if (count > 1) {
+            layout.removeViews(1, count - 1);
+        }
         listWorkouts(week, day, layout, settings);
     }
 
@@ -66,7 +84,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private FrameLayout getWorkoutLayout(Lift lift, int weight) {
-        // TODO: Add padding and stuff...
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT);
