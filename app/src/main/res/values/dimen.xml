@@ -6,4 +6,8 @@
     <dimen name="text_header">18sp</dimen>
     <dimen name="lift_preview_text">7sp</dimen>
     <dimen name="lift_preview_week_day_text">5sp</dimen>
+    <dimen name="setup_label_text">18sp</dimen>
+    <dimen name="setup_edit_height">60sp</dimen>
+    <dimen name="setup_layout_padding">10sp</dimen>
+    <dimen name="setup_output_text">18sp</dimen>
 </resources>

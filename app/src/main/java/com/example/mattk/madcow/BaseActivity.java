@@ -24,6 +24,10 @@ public class BaseActivity extends AppCompatActivity {
                 Intent settingsIntent = new Intent(BaseActivity.this, SettingsActivity.class);
                 BaseActivity.this.startActivity(settingsIntent);
                 return true;
+            case R.id.setup:
+                Intent setupIntent = new Intent(BaseActivity.this, SetupWeightActivity.class);
+                BaseActivity.this.startActivity(setupIntent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
