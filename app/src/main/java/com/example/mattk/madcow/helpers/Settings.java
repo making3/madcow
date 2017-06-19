@@ -21,6 +21,10 @@ public class Settings {
         _preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
+    public Settings(SharedPreferences preferences) {
+        _preferences = preferences;
+    }
+
     public float getSetInterval() {
         return _preferences.getFloat(SET_INTERVAL, 0.125f);
     }
