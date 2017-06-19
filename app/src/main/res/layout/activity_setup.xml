@@ -9,49 +9,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:padding="@dimen/setup_layout_padding"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/setup_layout_padding"
+            android:orientation="vertical">
             <TextView
-                android:textColor="@color/primary"
+                android:id="@+id/max_lift_label"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary"
                 android:text="Max Squat"
-                android:textSize="@dimen/setup_label_text"
-                android:layout_height="wrap_content" />
-
+                android:textSize="@dimen/setup_label_text" />
             <EditText
-                android:layout_width="match_parent"
-                android:maxLength="4"
-                android:text="255"
                 android:id="@+id/max_lift_weight"
-                android:inputType="number"
-                android:layout_height="@dimen/setup_edit_height" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setup_edit_height"
+                android:maxLength="4"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:imeOptions="actionDone"
+                android:text="255"
+                android:inputType="number" />
         </LinearLayout>
         <LinearLayout
             android:padding="@dimen/setup_layout_padding"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
             <TextView
-                android:textColor="@color/primary"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Reps"
                 android:textSize="@dimen/setup_label_text"
-                android:layout_height="wrap_content" />
-
+                android:textColor="@color/primary" />
             <EditText
-                android:layout_width="match_parent"
-                android:maxLength="2"
-                android:text="5"
                 android:id="@+id/max_lift_reps"
-                android:inputType="number"
-                android:layout_height="@dimen/setup_edit_height" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setup_edit_height"
+                android:text="5"
+                android:maxLength="2"
+                android:inputType="number" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="bottom"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -59,20 +60,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textColor="@color/primary"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_weight="1"
                     android:text="Estimated 1RM"
-                    android:textSize="@dimen/setup_label_text" />
-
+                    android:textSize="@dimen/setup_label_text"
+                    android:textColor="@color/primary" />
                 <TextView
+                    android:id="@+id/estimated_one_rep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/estimated_one_rep"
+                    android:text="255"
                     android:textSize="@dimen/setup_output_text"
-                    android:layout_gravity="right"
-                    android:text="255" />
+                    android:layout_gravity="right" />
             </LinearLayout>
             <LinearLayout
                 android:padding="@dimen/setup_layout_padding"
@@ -87,9 +87,9 @@
                     android:textSize="@dimen/setup_label_text" />
 
                 <TextView
+                    android:id="@+id/estimated_five_rep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/estimated_five_rep"
                     android:textSize="@dimen/setup_output_text"
                     android:layout_gravity="right"
                     android:text="255" />
@@ -107,16 +107,18 @@
                     android:textSize="@dimen/setup_label_text" />
 
                 <TextView
+                    android:id="@+id/estimated_starting_weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/estimated_starting_weight"
                     android:textSize="@dimen/setup_output_text"
                     android:layout_gravity="right"
                     android:text="255" />
             </LinearLayout>
             <Button
+                android:id="@+id/next_starting_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="nextStartingWeightClick"
                 android:text="Next"
                 android:layout_gravity="bottom" />
         </LinearLayout>

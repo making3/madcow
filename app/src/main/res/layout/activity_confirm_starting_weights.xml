@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mattk.madcow.ConfirmStartingWeightsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="@dimen/setup_layout_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lift_squat"
+                android:textSize="@dimen/setup_label_text"
+                android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/lift_squat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="255"
+                android:textSize="@dimen/setup_output_text"
+                android:layout_gravity="right" />
+        </LinearLayout>
+        <LinearLayout
+            android:padding="@dimen/setup_layout_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lift_bench"
+                android:textSize="@dimen/setup_label_text"
+                android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/lift_bench"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="255"
+                android:textSize="@dimen/setup_output_text"
+                android:layout_gravity="right" />
+        </LinearLayout>
+        <LinearLayout
+            android:padding="@dimen/setup_layout_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lift_row"
+                android:textSize="@dimen/setup_label_text"
+                android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/lift_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="255"
+                android:textSize="@dimen/setup_output_text"
+                android:layout_gravity="right" />
+        </LinearLayout>
+        <LinearLayout
+             android:padding="@dimen/setup_layout_padding"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:layout_weight="1"
+                 android:text="@string/lift_press"
+                 android:textSize="@dimen/setup_label_text"
+                 android:textColor="@color/primary" />
+             <TextView
+                 android:id="@+id/lift_press"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="255"
+                 android:textSize="@dimen/setup_output_text"
+                 android:layout_gravity="right" />
+         </LinearLayout>
+        <LinearLayout
+            android:padding="@dimen/setup_layout_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lift_deadlift"
+                android:textSize="@dimen/setup_label_text"
+                android:textColor="@color/primary" />
+            <TextView
+                android:id="@+id/lift_deadlift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="255"
+                android:textSize="@dimen/setup_output_text"
+                android:layout_gravity="right" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:onClick="redirectToMain"
+            android:text="Cancel"
+            android:layout_gravity="bottom" />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:onClick="confirmStartingWeights"
+            android:text="Confirm"
+            android:layout_gravity="bottom" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

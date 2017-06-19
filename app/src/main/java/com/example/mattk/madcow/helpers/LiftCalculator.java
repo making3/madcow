@@ -58,4 +58,29 @@ public class LiftCalculator {
         int a = Math.round(maxWeight * (1- _settings.getSetInterval() * warmupOffset) / (float)(2.0 * plate));
         return (int)(a * 2.0 * plate);
     }
+
+    public int getOneRepMax(int weight, int reps) {
+        // 5RM =G9*(1.0278-(0.0278*5))
+        // 1RM =(C9)/(1.0278-(0.0278*D9))
+        //      Weight / (1.0278-(0.0278*reps))
+        return Math.round(weight / (float) (1.0278 - (0.0278 * reps)));
+    }
+
+    public int getFiveRepMax(int oneRepMax) {
+        return Math.round(oneRepMax * (float)(1.0278 - (0.0278 * 5)));
+    }
+
+    public int getStartingWeight(int fiveRepMax) {
+        // TODO: Test starting weight with various weights. Should move this to LiftCalculator or another helper for test purposes.
+        // Starting Weight =ROUND(H9*((1/1.025)^(PRWEEK-1))/(2*PLATE),0)*2*PLATE
+        //                        ROUND(fiveRepMax * ((1 / 1.025) ^ (PRWEEK - 1)) / (2 * PLATE), 0) * 2 * PLATE
+        //
+        // TODO: Create a setting for the PRWEEK value
+        int matchPrWeek = 3;
+        float weekPower = (float)Math.pow((1 / 1.025), matchPrWeek);
+        float smallestPlate = _settings.getSmallestPlate();
+        float tempStarting = Math.round(fiveRepMax * weekPower / (2 * smallestPlate));
+        float startingWeight = tempStarting * 2 * smallestPlate;
+        return (int)startingWeight;
+    }
 }
