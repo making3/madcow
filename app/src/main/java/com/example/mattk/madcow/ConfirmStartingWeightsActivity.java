@@ -80,6 +80,7 @@ public class ConfirmStartingWeightsActivity extends AppCompatActivity {
     }
 
     public void redirectToMain(View v) {
+        // TODO: Reset the week here
         Intent intent = new Intent(ConfirmStartingWeightsActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

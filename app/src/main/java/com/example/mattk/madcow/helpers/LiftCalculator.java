@@ -74,8 +74,7 @@ public class LiftCalculator {
         // Starting Weight =ROUND(H9*((1/1.025)^(PRWEEK-1))/(2*PLATE),0)*2*PLATE
         //                        ROUND(fiveRepMax * ((1 / 1.025) ^ (PRWEEK - 1)) / (2 * PLATE), 0) * 2 * PLATE
         //
-        // TODO: Create a setting for the PRWEEK value
-        int matchPrWeek = 3;
+        int matchPrWeek = _settings.getPrMatchWeek();
         float weekPower = (float)Math.pow((1 / 1.025), matchPrWeek);
         float smallestPlate = _settings.getSmallestPlate();
         float tempStarting = Math.round(fiveRepMax * weekPower / (2 * smallestPlate));

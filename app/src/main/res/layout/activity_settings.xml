@@ -15,6 +15,70 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Basic Settings"
+            android:textSize="18dp"
+            android:textColor="@color/primary_dark"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_editor_absoluteY="0dp"
+            app:layout_editor_absoluteX="0dp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/plate"
+            android:clickable="true"
+            android:onClick="setStartingLiftClick"
+            android:padding="10dp"
+            android:background="@drawable/textlines"
+            android:layout_height="50dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="18dp"
+                    android:text="@string/smallest_plate"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:id="@+id/plate_value"
+                    android:text="2.5"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/match_pr_week"
+            android:clickable="true"
+            android:onClick="setStartingLiftClick"
+            android:padding="10dp"
+            android:layout_height="50dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="18dp"
+                    android:text="@string/match_pr_week"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:id="@+id/match_pr_week_value"
+                    android:text="4"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Starting Lifts"
             android:textSize="18dp"
             android:textColor="@color/primary_dark"
@@ -154,33 +218,6 @@
                     android:textSize="18dp"
                     android:id="@+id/deadlift_value"
                     android:text="100"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-        </FrameLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:id="@+id/plate"
-            android:clickable="true"
-            android:onClick="setStartingLiftClick"
-            android:padding="10dp"
-            android:background="@drawable/textlines"
-            android:layout_height="50dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="18dp"
-                    android:text="@string/smallest_plate"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18dp"
-                    android:id="@+id/plate_value"
-                    android:text="2.5"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>

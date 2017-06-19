@@ -10,4 +10,5 @@
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="smallest_plate">Smallest Plate</string>
+    <string name="match_pr_week">Match PRs in Week #</string>
 </resources>

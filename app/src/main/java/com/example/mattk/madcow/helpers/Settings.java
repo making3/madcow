@@ -14,6 +14,7 @@ public class Settings {
     final String WEEK = "week";
     final String DAY = "day";
     final String PLATE = "plate";
+    final String PR_MATCH_WEEK = "pr_match_week";
 
     private SharedPreferences _preferences;
 
@@ -93,15 +94,23 @@ public class Settings {
         return _preferences.getInt(DAY, 1);
     }
 
-    private void saveInt(String name, int weight) {
+    public int getPrMatchWeek() {
+        return _preferences.getInt(PR_MATCH_WEEK, 4);
+    }
+
+    public void setPrMatchWeek(int prMatchWeek) {
+        saveInt(PR_MATCH_WEEK, prMatchWeek);
+    }
+
+    private void saveInt(String name, int value) {
         SharedPreferences.Editor editor = _preferences.edit();
-        editor.putInt(name, weight);
+        editor.putInt(name, value);
         editor.commit();
     }
 
-    private void saveFloat(String name, float weight) {
+    private void saveFloat(String name, float value) {
         SharedPreferences.Editor editor = _preferences.edit();
-        editor.putFloat(name, weight);
+        editor.putFloat(name, value);
         editor.commit();
     }
 }

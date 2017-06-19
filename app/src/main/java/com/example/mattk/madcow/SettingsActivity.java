@@ -21,12 +21,16 @@ public class SettingsActivity extends BaseActivity implements WeightDialogFragme
         _settings = new Settings(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        TextView plateText = (TextView)findViewById(R.id.plate_value);
+        TextView matchPrText = (TextView)findViewById(R.id.match_pr_week_value);
         TextView squatText = (TextView)findViewById(R.id.squat_value);
         TextView benchText = (TextView)findViewById(R.id.bench_value);
         TextView rowText = (TextView)findViewById(R.id.row_value);
         TextView pressText = (TextView)findViewById(R.id.press_value);
         TextView deadliftText = (TextView)findViewById(R.id.deadlift_value);
 
+        plateText.setText(Float.toString(_settings.getSmallestPlate()));
+        matchPrText.setText(Integer.toString(_settings.getPrMatchWeek()));
         squatText.setText(Integer.toString(_settings.getStartingSquat()));
         benchText.setText(Integer.toString(_settings.getStartingBench()));
         rowText.setText(Integer.toString(_settings.getStartingRow()));
@@ -68,6 +72,9 @@ public class SettingsActivity extends BaseActivity implements WeightDialogFragme
                 break;
             case "plate":
                 _settings.setSmallestPlate(Float.parseFloat(result));
+                break;
+            case "match_pr_week":
+                _settings.setSmallestPlate(Integer.parseInt(result));
                 break;
         }
 
