@@ -9,16 +9,10 @@ import com.example.mattk.madcow.helpers.Settings;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 public class LiftCalculatorUnitTest {
     private SharedPreferences sharedPrefs;
     private Context context;
@@ -226,5 +220,47 @@ public class LiftCalculatorUnitTest {
     public void testTwelfthWeekThirdDayRow() {
         int actual = calculator.getMaxWeight(12, 3, Lift.ROW);
         assertEquals(actual, 195);
+    }
+
+    @Test
+    public void testGetStartingWeight() {
+        int actual = calculator.getStartingWeight(249);
+        assertEquals(230, actual);
+
+        actual = calculator.getStartingWeight(242);
+        assertEquals(225, actual);
+
+        actual = calculator.getStartingWeight(207);
+        assertEquals(190, actual);
+    }
+
+    @Test
+    public void testGetOneRepMax(){
+        int actual = calculator.getOneRepMax(265, 2);
+        assertEquals(273, actual);
+
+        actual = calculator.getOneRepMax(220, 3);
+        assertEquals(233, actual);
+
+        actual = calculator.getOneRepMax(280, 1);
+        assertEquals(280, actual);
+
+        actual = calculator.getOneRepMax(125, 6);
+        assertEquals(145, actual);
+    }
+
+    @Test
+    public void testGetFiveRepMax(){
+        int actual = calculator.getFiveRepMax(273);
+        assertEquals(243, actual);
+
+        actual = calculator.getFiveRepMax(233);
+        assertEquals(207, actual);
+
+        actual = calculator.getFiveRepMax(281);
+        assertEquals(250, actual);
+
+        actual = calculator.getFiveRepMax(145);
+        assertEquals(129, actual);
     }
 }

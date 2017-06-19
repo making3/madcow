@@ -71,7 +71,6 @@ public class LiftCalculator {
     }
 
     public int getStartingWeight(int fiveRepMax) {
-        // TODO: Test starting weight with various weights. Should move this to LiftCalculator or another helper for test purposes.
         // Starting Weight =ROUND(H9*((1/1.025)^(PRWEEK-1))/(2*PLATE),0)*2*PLATE
         //                        ROUND(fiveRepMax * ((1 / 1.025) ^ (PRWEEK - 1)) / (2 * PLATE), 0) * 2 * PLATE
         //
