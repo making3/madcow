@@ -51,11 +51,10 @@ public class ConfirmStartingWeightsActivity extends AppCompatActivity {
     }
 
     public void confirmStartingWeights(View v) {
+        Settings settings = new Settings(this);
         for (Map.Entry<Lift, Integer> startingWeight : _startingWeights.entrySet()) {
             Lift lift = startingWeight.getKey();
             int weight = startingWeight.getValue();
-
-            Settings settings = new Settings(this);
 
             switch (lift) {
                 case SQUAT:
@@ -76,11 +75,13 @@ public class ConfirmStartingWeightsActivity extends AppCompatActivity {
             }
         }
 
+        settings.setDay(1);
+        settings.setWeek(1);
+
         redirectToMain(v);
     }
 
     public void redirectToMain(View v) {
-        // TODO: Reset the week here
         Intent intent = new Intent(ConfirmStartingWeightsActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
