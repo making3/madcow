@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,6 +80,12 @@ public class SetupWeightActivity extends AppCompatActivity {
         _maxLiftTextView.setText("Max " + _currentLift.toString());
         _maxWeightEditText.setText("");
         _maxRepsEditText.setText("5");
+        _maxWeightEditText.requestFocus();
+
+        // Allows the first edit text to show keyboard
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+        // Allows other edit texts to show keyboards (at least on Nextbit Robin phones so far)
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(_maxWeightEditText, InputMethodManager.SHOW_IMPLICIT);
     }

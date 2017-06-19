@@ -27,7 +27,6 @@
                 android:maxLength="4"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:imeOptions="actionDone"
                 android:text="255"
                 android:inputType="number" />
         </LinearLayout>
