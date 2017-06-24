@@ -1,6 +1,6 @@
-package com.example.mattk.madcow.helpers;
+package com.making3.madcow.helpers;
 
-import com.example.mattk.madcow.data.Lift;
+import com.making3.madcow.data.Lift;
 
 public class LiftCalculator {
     private Settings _settings;

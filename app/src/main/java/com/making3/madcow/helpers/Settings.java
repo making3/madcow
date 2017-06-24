@@ -1,4 +1,4 @@
-package com.example.mattk.madcow.helpers;
+package com.making3.madcow.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,6 +1,6 @@
-package com.example.mattk.madcow.data;
+package com.making3.madcow.data;
 
-import com.example.mattk.madcow.helpers.LiftCalculator;
+import com.making3.madcow.helpers.LiftCalculator;
 
 import java.util.ArrayList;
 import java.util.Collections;

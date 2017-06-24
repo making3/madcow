@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.helpers.Settings;
+import com.making3.madcow.data.Lift;
+import com.making3.madcow.helpers.Settings;
 
 import java.util.HashMap;
 import java.util.Map;

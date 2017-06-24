@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

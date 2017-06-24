@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.helpers.LiftCalculator;
-import com.example.mattk.madcow.helpers.Settings;
+import com.making3.madcow.data.Lift;
+import com.making3.madcow.helpers.LiftCalculator;
+import com.making3.madcow.helpers.Settings;
 
 import java.util.HashMap;
 import java.util.Queue;

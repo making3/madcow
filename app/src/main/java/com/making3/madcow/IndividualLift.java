@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutCompat;

@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.mattk.madcow.helpers.Settings;
+import com.making3.madcow.helpers.Settings;
 
 public class SettingsActivity extends BaseActivity implements WeightDialogFragment.WeightDialogListener {
     private Settings _settings;

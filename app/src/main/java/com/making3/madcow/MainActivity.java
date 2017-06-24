@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.data.Workout;
-import com.example.mattk.madcow.helpers.LiftCalculator;
-import com.example.mattk.madcow.helpers.Settings;
+import com.making3.madcow.data.Lift;
+import com.making3.madcow.data.Workout;
+import com.making3.madcow.helpers.LiftCalculator;
+import com.making3.madcow.helpers.Settings;
 
 public class MainActivity extends BaseActivity {
     @Override

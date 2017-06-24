@@ -6,7 +6,7 @@
     android:background="@color/viewBg"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context="com.example.mattk.madcow.WorkoutActivity">
+    tools:context="com.making3.madcow.WorkoutActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,18 +30,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <com.example.mattk.madcow.WorkoutRow
+        <com.making3.madcow.WorkoutRow
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_height"
             android:layout_marginBottom="@dimen/card_margin_bottom"
             android:id="@+id/firstWorkout" />
-        <com.example.mattk.madcow.WorkoutRow
+        <com.making3.madcow.WorkoutRow
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_height"
             android:layout_marginBottom="@dimen/card_margin_bottom"
             android:id="@+id/secondWorkout" />
 
-        <com.example.mattk.madcow.WorkoutRow
+        <com.making3.madcow.WorkoutRow
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_height"
             android:layout_marginBottom="@dimen/card_margin_bottom"

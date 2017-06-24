@@ -1,11 +1,11 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.mattk.madcow.data.Lift;
-import com.example.mattk.madcow.helpers.LiftCalculator;
-import com.example.mattk.madcow.helpers.Settings;
+import com.making3.madcow.data.Lift;
+import com.making3.madcow.helpers.LiftCalculator;
+import com.making3.madcow.helpers.Settings;
 
 import org.junit.Before;
 import org.junit.Test;

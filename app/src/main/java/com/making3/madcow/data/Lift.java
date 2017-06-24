@@ -1,4 +1,4 @@
-package com.example.mattk.madcow.data;
+package com.making3.madcow.data;
 
 import java.util.LinkedList;
 import java.util.Queue;

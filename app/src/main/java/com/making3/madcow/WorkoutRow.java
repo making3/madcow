@@ -1,4 +1,4 @@
-package com.example.mattk.madcow;
+package com.making3.madcow;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.mattk.madcow.data.Workout;
-import com.example.mattk.madcow.data.WorkoutSet;
+import com.making3.madcow.data.Workout;
+import com.making3.madcow.data.WorkoutSet;
 
 public class WorkoutRow extends LinearLayout {
     private TextView _liftName;
