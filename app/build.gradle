@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.example.mattk.madcow"
+        applicationId 'com.making3.madcow'
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
